@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "unlatex-cli",
+    "unlatex-core",
+]

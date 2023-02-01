@@ -1,0 +1,31 @@
+{
+  "name": "unlatex",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@unified-latex/unified-latex-prettier": "^1.2.2",
+    "@unified-latex/unified-latex-types": "^1.2.2",
+    "@unified-latex/unified-latex-util-parse": "^1.2.2",
+    "prettier": "^2.8.3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/prettier": "^2.7.2",
+    "bun-types": "^0.5.0",
+    "rollup": "^3.12.0",
+    "rollup-plugin-polyfill-node": "^0.12.0",
+    "tslib": "^2.5.0"
+  },
+  "scripts": {
+    "build": "bunx rollup -c",
+    "dev": "bunx rollup -c -w",
+    "test": "bun test/test.ts",
+    "pretest": "bun run build"
+  },
+  "files": [
+    "dist"
+  ]
+}

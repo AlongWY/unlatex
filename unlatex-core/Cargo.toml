@@ -1,0 +1,20 @@
+[package]
+name = "unlatex"
+version = "0.1.0"
+authors = ["Yunlong Feng <alongwyforever@outlook.com>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "Rust bindings to unified-latex"
+repository = "https://github.com/alongwy/unlatex"
+documentation = "https://docs.rs/unlatex"
+readme = "README.md"
+keywords = ["LaTeX"]
+categories = ["api-bindings"]
+build = "build.rs"
+
+[dependencies]
+thiserror = "1.0"
+rquickjs = { version = "0.1", default-features = false }
+
+[features]
+default = []
