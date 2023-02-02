@@ -16,4 +16,4 @@ categories = ["command-line-utilities"]
 [dependencies]
 anyhow = "1.0"
 gumdrop = "0.8.0"
-unlatex = { path = "../unlatex-core" }
+unlatex = { version = "0.1.0", path = "../unlatex-core" }
