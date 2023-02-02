@@ -46,7 +46,7 @@ Check it out!
     \]
 \end{enumerate}"#).unwrap();
 
-    println!("{:?}", ast);
+    println!("{}", ast);
 }
 
 #[test]

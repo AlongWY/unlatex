@@ -3,6 +3,44 @@
 use rquickjs::{Ctx, FromJs, Object, Value};
 use crate::ast::{Node, get_undefined};
 
+#[derive(Debug, Default, Clone)]
+pub struct Position {
+    pub line: usize,
+    pub offset: usize,
+    pub column: usize,
+}
+
+#[derive(Debug, Default, Clone)]
+pub struct PositionInfo {
+    pub start: Position,
+    pub end: Position,
+}
+
+impl<'js> FromJs<'js> for Position {
+    fn from_js(ctx: Ctx<'js>, value: Value<'js>) -> rquickjs::Result<Self> {
+        let object = Object::from_js(ctx, value)?;
+        let line = get_undefined(&object, "line")?;
+        let offset = get_undefined(&object, "offset")?;
+        let column = get_undefined(&object, "column")?;
+        Ok(Position {
+            line,
+            offset,
+            column,
+        })
+    }
+}
+
+impl<'js> FromJs<'js> for PositionInfo {
+    fn from_js(ctx: Ctx<'js>, value: Value<'js>) -> rquickjs::Result<Self> {
+        let object = Object::from_js(ctx, value)?;
+        Ok(PositionInfo {
+            start: get_undefined(&object, "start")?,
+            end: get_undefined(&object, "end")?,
+        })
+    }
+}
+
+
 #[derive(Debug, Clone)]
 pub struct RenderInfo {
     /// Whether to align the environment contents based on `&` and `\\` delimiters

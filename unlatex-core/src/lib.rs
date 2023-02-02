@@ -69,7 +69,7 @@ fn init_unlatex() -> Result<(Runtime, Context)>
         let res = ctx.eval::<(), _>(JS_SRC);
 
         if let Err(err) = res {
-            eprintln!("Error: {}", err);
+            eprintln!("Error: {err}");
         }
     });
 
@@ -108,8 +108,7 @@ pub fn format(input: &str) -> Result<String> {
 
 /// Parse LaTeX document using specified [engine](`JsEngine`).
 #[inline]
-fn parse_inner(engine: &Context, input: &str) -> Result<ast::NodeRoot>
-{
+fn parse_inner(engine: &Context, input: &str) -> Result<ast::Node> {
     let res = engine.with(|ctx| {
         let globals = ctx.globals();
         let parse: Function = globals.get("latexParse").unwrap();
@@ -120,7 +119,7 @@ fn parse_inner(engine: &Context, input: &str) -> Result<ast::NodeRoot>
 }
 
 /// Parse LaTeX document using the default [engine](`JsEngine`).
-pub fn parse(input: &str) -> Result<ast::NodeRoot> {
+pub fn parse(input: &str) -> Result<ast::Node> {
     UNLATEX.with(|engine| {
         engine
             .as_ref()
@@ -131,8 +130,7 @@ pub fn parse(input: &str) -> Result<ast::NodeRoot> {
 
 /// Parse LaTeX document using specified [engine](`JsEngine`).
 #[inline]
-fn jparse_inner(engine: &Context, input: &str) -> Result<String>
-{
+fn jparse_inner(engine: &Context, input: &str) -> Result<String> {
     let res = engine.with(|ctx| {
         let globals = ctx.globals();
         let parse: Function = globals.get("latexJParse").unwrap();
