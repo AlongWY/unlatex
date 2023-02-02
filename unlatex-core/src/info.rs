@@ -7,33 +7,33 @@ use crate::ast::{Node, get_undefined};
 pub struct RenderInfo {
     /// Whether to align the environment contents based on `&` and `\\` delimiters
     /// (like a matrix or tabular environment).
-    pub align_content: Option<bool>,
+    pub align_content: bool,
 
     /// Whether the macro's contents wraps along with the current
     /// paragraph or displays as it's own block.
-    pub in_par_mode: Option<bool>,
+    pub in_par_mode: bool,
 
     /// Whether the arguments should be processed as pgfkeys-type arguments.
-    pub pgfkeys_args: Option<bool>,
+    pub pgfkeys_args: bool,
 
     /// Whether there should be line breaks before and after the macro
     /// (e.g., like the \section{...} command.)
-    pub break_around: Option<bool>,
+    pub break_around: bool,
 
     /// Whether the contents of the macro should be assumed to be in math mode.
-    pub in_math_mode: Option<bool>,
+    pub in_math_mode: bool,
 
     /// Whether the arguments should be rendered with a hanging indent when the wrap
     /// (like the arguments to \item in an enumerate environment.)
-    pub hanging_indent: Option<bool>,
+    pub hanging_indent: bool,
 
     /// A list of names to be given to each argument when processing. This list should
-    /// be the same length as the number of arguments. `null` can appear any number of times
+    /// be the same length as the number of arguments. `None` can appear any number of times
     /// for "un-named" arguments.
     ///
     /// This allows a consistent reference to macro arguments even if the macro signatures are redefined between
     /// packages.
-    pub named_arguments: Option<Vec<String>>,
+    pub named_arguments: Vec<Option<String>>,
 }
 
 impl<'js> FromJs<'js> for RenderInfo {

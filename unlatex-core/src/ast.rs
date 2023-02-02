@@ -93,7 +93,7 @@ impl<'js> FromJs<'js> for Node {
 
 #[derive(Debug, Clone)]
 pub struct NodeRoot {
-    pub content: Option<Vec<Node>>,
+    pub content: Vec<Node>,
     pub render_info: Option<RenderInfo>,
 }
 
@@ -142,9 +142,9 @@ impl<'js> FromJs<'js> for NodeParbreak {
 #[derive(Debug, Clone)]
 pub struct NodeComment {
     pub content: String,
-    pub sameline: Option<bool>,
-    pub suffix_parbreak: Option<bool>,
-    pub leading_whitespace: Option<bool>,
+    pub sameline: bool,
+    pub suffix_parbreak: bool,
+    pub leading_whitespace: bool,
 }
 
 impl<'js> FromJs<'js> for NodeComment {
@@ -167,7 +167,7 @@ impl<'js> FromJs<'js> for NodeComment {
 pub struct NodeMacro {
     pub content: String,
     pub escape_token: Option<String>,
-    pub args: Option<Vec<NodeArgument>>,
+    pub args: Vec<NodeArgument>,
     pub render_info: Option<RenderInfo>,
 }
 
@@ -190,8 +190,8 @@ impl<'js> FromJs<'js> for NodeMacro {
 #[derive(Debug, Clone)]
 pub struct NodeEnvironment {
     pub env: String,
-    pub args: Option<Vec<NodeArgument>>,
-    pub content: Option<Vec<Node>>,
+    pub args: Vec<NodeArgument>,
+    pub content: Vec<Node>,
     pub render_info: Option<RenderInfo>,
 }
 
